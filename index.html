@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoPremium - Concessionnaire Automobile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="script.js"></script>
     <style>
         :root {
             --primary-color: #1a3a5f;
@@ -453,7 +452,7 @@
                 <p>Découvrez notre sélection de véhicules soigneusement inspectés et garantis</p>
             </div>
             <div class="vehicles-grid" id="vehicles-container">
-                <!-- Les véhicules seront chargés par JavaScript -->
+                <!-- Les véhicules seront ajoutés ici par JavaScript -->
             </div>
         </div>
     </section>
@@ -615,5 +614,70 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const vehicles = [
+            {
+                id: 1,
+                name: "Bmw Séries 3",
+                year: 2021,
+                mileage: "25000 Km",
+                fuel: "Diesel",
+                price: "35000000 fcfa",
+                image: "https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            {
+                id: 2,
+                name: "Bugati La Voiture noir",
+                year: 2024,
+                mileage: "45000 Km",
+                fuel: "Diesel",
+                price: "1100000000 fcfa",
+                image: "https://blog.vivacar.fr/wp-content/uploads/2025/03/Top-10-des-plus-belles-voitures-du-monde.webp"
+            },
+            {
+                id: 3,
+                name: "EXP 100 GT | Bentley",
+                year: 2021,
+                mileage: "33000 Km",
+                fuel: "Diesel",
+                price: "3400000000 fcfa",
+                image: "https://i.pinimg.com/1200x/95/a1/ac/95a1ac3549dfc4499662cea57a782660.jpg"
+            }
+        ];
+
+        function displayVehicles() {
+            const container = document.getElementById('vehicles-container');
+
+            vehicles.forEach(vehicle => {
+                const vehicleCard = document.createElement('div');
+                vehicleCard.className = 'vehicle-card';
+
+                vehicleCard.innerHTML = `
+                    <img src="${vehicle.image}" alt="${vehicle.name}" class="vehicle-img">
+                    <div class="vehicle-info">
+                        <h3>${vehicle.name}</h3>
+                        <div class="vehicle-details">
+                            <span>${vehicle.year}</span>
+                            <span>${vehicle.mileage}</span>
+                            <span>${vehicle.fuel}</span>
+                        </div>
+                        <div class="vehicle-price">${vehicle.price}</div>
+                        <button class="btn" onclick="showVehicleDetails(${vehicle.id})">Voir détails</button>
+                    </div>
+                `;
+
+                container.appendChild(vehicleCard);
+            });
+        }
+
+        function showVehicleDetails(vehicleId) {
+            const vehicle = vehicles.find(v => v.id === vehicleId);
+            alert(`Vous avez sélectionné : ${vehicle.name}`);
+        }
+
+        // Appel de la fonction pour afficher les véhicules
+        displayVehicles();
+    </script>
 </body>
 </html>
